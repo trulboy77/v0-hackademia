@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-geist-sans: "Geist", system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono", "Courier New", monospace;
+
+  /* Matrix/Hacker Theme Colors */
+  --background: 0 0% 3%;
+  --foreground: 120 100% 85%;
+
+  --card: 0 0% 5%;
+  --card-foreground: 120 100% 85%;
+
+  --popover: 0 0% 5%;
+  --popover-foreground: 120 100% 85%;
+
+  --primary: 120 100% 50%;
+  --primary-foreground: 0 0% 0%;
+
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 120 100% 85%;
+
+  --muted: 0 0% 8%;
+  --muted-foreground: 120 50% 60%;
+
+  --accent: 120 100% 25%;
+  --accent-foreground: 120 100% 85%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 120 50% 20%;
+  --input: 120 50% 15%;
+  --ring: 120 100% 50%;
+
+  --radius: 0.25rem;
+
+  /* Custom Matrix colors */
+  --matrix-green: 120 100% 50%;
+  --matrix-green-dark: 120 100% 25%;
+  --matrix-green-light: 120 100% 75%;
+  --neon-cyan: 180 100% 50%;
+  --neon-pink: 300 100% 70%;
+  --terminal-black: 0 0% 3%;
+  --terminal-gray: 0 0% 15%;
+}
+
+[data-theme="light"] {
+  --background: 0 0% 98%;
+  --foreground: 0 0% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+
+  --primary: 120 100% 25%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 0 0% 95%;
+  --secondary-foreground: 0 0% 10%;
+
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 45%;
+
+  --accent: 120 100% 90%;
+  --accent-foreground: 0 0% 10%;
+
+  --border: 0 0% 85%;
+  --input: 0 0% 90%;
+  --ring: 120 100% 25%;
+}
+
+[data-theme="cyberpunk-neon"] {
+  --background: 260 15% 8%;
+  --foreground: 300 100% 85%;
+
+  --primary: 300 100% 70%;
+  --primary-foreground: 0 0% 0%;
+
+  --secondary: 260 15% 15%;
+  --secondary-foreground: 300 100% 85%;
+
+  --accent: 180 100% 50%;
+  --accent-foreground: 0 0% 0%;
+
+  --border: 300 50% 30%;
+  --ring: 300 100% 70%;
+
+  --neon-cyan: 180 100% 50%;
+  --neon-pink: 300 100% 70%;
+}
+
+[data-theme="cyberpunk-orange"] {
+  --background: 20 15% 8%;
+  --foreground: 30 100% 85%;
+
+  --primary: 30 100% 60%;
+  --primary-foreground: 0 0% 0%;
+
+  --secondary: 20 15% 15%;
+  --secondary-foreground: 30 100% 85%;
+
+  --accent: 180 100% 50%;
+  --accent-foreground: 0 0% 0%;
+
+  --border: 30 50% 30%;
+  --ring: 30 100% 60%;
+
+  --neon-cyan: 180 100% 50%;
+  --neon-orange: 30 100% 60%;
+}
+
+/* Added high contrast mode for accessibility */
+[data-theme="high-contrast"] {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 0%;
+  --card-foreground: 0 0% 100%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 10%;
+  --ring: 0 0% 100%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-family: var(--font-geist-mono);
+  overflow: hidden;
+}
+
+/* Matrix rain effect */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* Selection styling */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 10px currentColor;
+}
+
+.glow-border {
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+}
+
+/* Terminal cursor */
+.terminal-cursor::after {
+  content: "█";
+  animation: blink 1s infinite;
+}
+
+/* Added reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced focus indicators for keyboard navigation */
+.focus-visible:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
