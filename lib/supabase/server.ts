@@ -7,3 +7,5 @@ export function createServerClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   )
 }
+// in lib/supabase/server.ts
+export { createServerClient as createClient }
