@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import type { Theme } from "@/types/theme"
+import { useTheme } from "@/hooks/use-theme"
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>("dark")
